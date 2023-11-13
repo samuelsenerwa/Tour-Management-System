@@ -10,7 +10,7 @@ const nav__links = [
     display: "Home",
   },
   {
-    path: "/about",
+    path: "/about ",
     display: "About",
   },
   {
@@ -31,7 +31,7 @@ const Header = () => {
             </div>
             {/* ============logo end========== */}
 
-            {/* ============menu========== */}
+            {/* ============menu start========== */}
             <div className="navigation">
               <ul className="menu d-flex align-items-center gap-5">
                 {nav__links.map((item, index) => (
