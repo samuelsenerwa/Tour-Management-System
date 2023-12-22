@@ -65,25 +65,71 @@ export const deleteTour = async (req, res) => {
 
 // getSingle tour
 export const getSingleTour = async (req, res) => {
-    const id = req.params.id;
-    try {
-      const tour = await Tour.findById(id);
-  
-      res.status(200).json({
-        success: true,
-        message: "Tour Found",
-        data: tour
-      });
-    } catch (err) {
-      res.status(400).json({
-        success: false,
-        message: "Not Found!",
-      });
-    }
+  const id = req.params.id;
+  try {
+    const tour = await Tour.findById(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Tour Found",
+      data: tour,
+    });
+  } catch (err) {
+    res.status(400).json({
+      success: false,
+      message: "Not Found!",
+    });
+  }
 };
 
 // getAll tour
 export const getAllTour = async (req, res) => {
+  // for pagination
+  const page = parseInt(req.query.page);
+
   try {
-  } catch (err) {}
+    const tours = await Tour.find({})
+      .skip(page * 8)
+      .limit(8);
+    res.status(200).json({
+      success: true,
+      message: "Tours Found",
+      count: tours.length,
+      data: tours,
+    });
+  } catch (err) {
+    res.status(404).json({
+      success: false,
+      message: "An Error occured!",
+    });
+  }
+};
+
+// get tour by search
+
+export const getTourBySearch = async (req, res) => {
+  const city = new RegExp(req.query.city, "i"); //here 'i' means case sensitive
+  const distance = parseInt(req.query.distance);
+  const maxGroupSize = parseInt(req.query.maxGroupSize);
+
+  // gte means greater than equal value
+
+  try {
+    const tours = await Tour.find({
+      city,
+      distance: { $gte: distance },
+      maxGroupSize: { $gte: maxGroupSize },
+    });
+
+    res.status(200).json({
+        success: true,
+        message:"Successful",
+        data: tours,
+    });
+  } catch (err) {
+    res.status(404).json({
+        success: false,
+        message: "Error occured!",
+  })
+}
 };
