@@ -89,6 +89,7 @@ export const getAllTour = async (req, res) => {
 
   try {
     const tours = await Tour.find({})
+      .populate("reviews")
       .skip(page * 8)
       .limit(8);
     res.status(200).json({
@@ -160,6 +161,9 @@ export const getTourCount = async (req, res) => {
   } catch (err) {
     res
       .status(500)
-      .json({ success: false, message: "An error occured while featching tours!" });
+      .json({
+        success: false,
+        message: "An error occured while featching tours!",
+      });
   }
 };
