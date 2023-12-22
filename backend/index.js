@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import tourRoute from './routes/tours.js'
+import userRoute from './routes/users.js'
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 
 // routes
 app.use('/tours', tourRoute)
+app.use('/users', userRoute)
 
 // checking if nodemon is working correctlyy
 app.listen(port, () => {
