@@ -18,11 +18,11 @@ const tours = [
     desc: "this is the description",
     reviews: [
       {
-        name: "jhon doe",
+        name: "john doe",
         rating: 4.6,
       },
       {
-        name: "jhon doe",
+        name: "john doe",
         rating: 5.0,
       },
     ],
@@ -41,7 +41,7 @@ const tours = [
     desc: "this is the description",
     reviews: [
       {
-        name: "jhon doe",
+        name: "john doe",
         rating: 4.6,
       },
     ],
@@ -60,7 +60,7 @@ const tours = [
     desc: "this is the description",
     reviews: [
       {
-        name: "jhon doe",
+        name: "john doe",
         rating: 4.6,
       },
     ],
@@ -79,7 +79,7 @@ const tours = [
     desc: "this is the description",
     reviews: [
       {
-        name: "jhon doe",
+        name: "john doe",
         rating: 4.6,
       },
     ],
@@ -98,7 +98,7 @@ const tours = [
     desc: "this is the description",
     reviews: [
       {
-        name: "jhon doe",
+        name: "john doe",
         rating: 4.6,
       },
     ],
@@ -117,7 +117,7 @@ const tours = [
     desc: "this is the description",
     reviews: [
       {
-        name: "jhon doe",
+        name: "john doe",
         rating: 4.6,
       },
     ],
