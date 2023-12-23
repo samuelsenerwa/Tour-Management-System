@@ -67,7 +67,7 @@ export const deleteTour = async (req, res) => {
 export const getSingleTour = async (req, res) => {
   const id = req.params.id;
   try {
-    const tour = await Tour.findById(id);
+    const tour = await Tour.findById(id).populate("reviews");
 
     res.status(200).json({
       success: true,
@@ -120,7 +120,7 @@ export const getTourBySearch = async (req, res) => {
       city,
       distance: { $gte: distance },
       maxGroupSize: { $gte: maxGroupSize },
-    });
+    }).populate("reviews");
 
     res.status(200).json({
       success: true,
@@ -138,7 +138,9 @@ export const getTourBySearch = async (req, res) => {
 // get featured tour
 export const getFeaturedTour = async (req, res) => {
   try {
-    const tours = await Tour.find({ featured: true }).limit(8);
+    const tours = await Tour.find({ featured: true })
+      .populate("reviews")
+      .limit(8);
     res.status(200).json({
       success: true,
       message: "Successful",
@@ -159,11 +161,9 @@ export const getTourCount = async (req, res) => {
 
     res.status(200).json({ success: true, data: tourCount });
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "An error occured while featching tours!",
-      });
+    res.status(500).json({
+      success: false,
+      message: "An error occured while featching tours!",
+    });
   }
 };
