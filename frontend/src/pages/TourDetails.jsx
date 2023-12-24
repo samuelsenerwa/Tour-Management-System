@@ -1,20 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/tour-details.css";
 import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 import { useParams } from "react-router-dom";
-import tourData from "../assets/data/tours";
+// import tourData from "../assets/data/tours";
 import calculateAvgRating from "../utils/avgRating";
 import avatar from "../assets/images/avatar.jpg";
 import Booking from "../components/Booking/Booking";
 import Newsletter from "../shared/Newsletter";
+import useFetch from './../hooks/useFetch';
 
 const TourDetails = () => {
   const { id } = useParams();
   const reviewMsgRef = useRef("");
   const [tourRating, setTourRating] = useState(null);
 
-  // static data for testing before using one from the DB
-  const tour = tourData.find((tour) => tour.id === id);
+  // fetch data from the database
+
+  const {data:tour} = useFetch (`{BASE_URL}/tours/${id}`)
 
   // destructure properties from tour object
   const {
@@ -47,6 +49,10 @@ const TourDetails = () => {
 
     // handle calls from the api
   };
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  }, [])
 
   return (
     <>
