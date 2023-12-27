@@ -28,7 +28,7 @@ const SearchBar = () => {
     const result = await res.json();
 
     navigate(
-      `/tour/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
+      `/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
       { state: result.data }
     );
   };
@@ -36,7 +36,7 @@ const SearchBar = () => {
   return (
     <Col lg="12">
       <div className="search__bar">
-        <form className="d-flex align-items-center gap-4">
+        <Form className="d-flex align-items-center gap-4">
           <FormGroup className="d-flex gap-3 form__group form__group-fast">
             <span>
               <i class="ri-map-pin-line"></i>
@@ -75,7 +75,7 @@ const SearchBar = () => {
           <span className="search__icon" type="submit" onClick={searchHandler}>
             <i class="ri-search-line"></i>
           </span>
-        </form>
+        </Form>
       </div>
     </Col>
   );
